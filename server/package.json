@@ -1,0 +1,31 @@
+{
+  "name": "@wordle/server",
+  "version": "0.1.0",
+  "main": "dist/app.js",
+  "private": true,
+  "dependencies": {
+    "@apollo/server": "^4.3.2",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/jest": "^29.4.0",
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^18.11.18",
+    "jest": "^29.4.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.3",
+    "ts-jest": "^29.0.5",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5",
+    "webpack-cli": "^5.0.1"
+  },
+  "scripts": {
+    "dev": "nodemon"
+  }
+}
