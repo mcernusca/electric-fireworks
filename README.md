@@ -40,12 +40,13 @@ Don't worry too much about browser compatibility, just let us know what browsers
 
 ### Extra Credit
 
-As mentioned above, we do not want you to spend more than a day or so on this project. If you finish the core implementation quickly, you might consider one or more of the following extra credit options.
+As mentioned above, we do not want you to spend more than a day or so on this project. If you finish the core implementation quickly, we'd highly recommend one or more of the following extra credit options. 
 
 1. Sandbox. It'd be pretty awesome to have a set of configurable physics parameters like gravity strength, air resistance, etc that would change the animation in real-time.  
 2. Sound. Maybe you want to add some sound effects?
 3. Browser/Mobile support. Not a requirement, but if you have extra time, go for it!
-4. Any other ideas you have!
+4. Guide the "shape" of the fireworks using SVG.
+5. Any other ideas you have!
 
 ## Running the Project
 
