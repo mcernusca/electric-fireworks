@@ -1,0 +1,33 @@
+.infoPanel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 8px 16px;
+  max-width: 90%;
+
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  transition:
+      opacity 0.2s linear,
+      transform 0.2s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 50px));
+
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+
+  &.isVisible {
+    opacity: 1;
+    transition:
+      opacity 0.15s linear,
+      transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,38 +1,14 @@
-.root {
+.app {
+  position: relative;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.container {
-  background: white;
-  border-radius: 10px;
-  max-width: 600px;
-  padding: 60px;
-}
-
-.title {
-  padding: 0px;
-  margin: 0px;
-}
-
-.button {
-  background: blue;
-  color: white;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: bold;
-  appearance: none;
-  outline: none;
-}
-
-.result {
-  font-family: 'Courier New', Courier, monospace;
-  background: #272823;
-  padding: 10px;
-  margin-top: 15px;
-  border-radius: 6px;
-  color: #84d6ec;
+  background-color: #3570FB;
+  background-image: url('/images/sky.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: hard-light;
+  filter: saturate(40%);
+  overflow: hidden;
 }
