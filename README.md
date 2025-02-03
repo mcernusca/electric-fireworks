@@ -1,52 +1,22 @@
-# Animation Challenge
+# Electric Fireworks
 
-![Fireworks](https://s3.us-west-2.amazonaws.com/media.prism.ai/fireworks-scaled.jpg.webp)
+Preview: https://electric-fireworks.netlify.app
 
-_This repository is strictly confidential. Please do not share this prompt or code with anybody. All work must be your own._
+## New Dependencies
+- Used [pixi.js](https://www.pixijs.com/) and [react-pixi](https://github.com/inlet/react-pixi) for the fireworks animation. Due to the nature of the animation, it wasn't necessary to use the react wrapper, but I wanted to get some practice using it.
+- Used [pixi/filter-advanced-bloom](https://github.com/pixijs/filters/tree/master/packages/filter-advanced-bloom) for a subtle bloom effect.
+- Used [react-spring](https://www.react-spring.dev/) for the interactive joystick animation.
+- Used [use-gesture](https://github.com/pmndrs/use-gesture) for the joystick gesture handling.
 
-Welcome to the Visual Electric Animation Challenge! Your task is to build a fireworks animation for the web.
+Tested against Chrome 131.
 
-## Challenge Rules
+### Design Decisions
 
-1. You must do this challenge yourself. You may not ask others for help (although you may use StackOverflow as you normally would).
-2. You may use any resources you normally would on the job, including but not limited to: Google, StackOverflow, ChatGPT, Cursor, etc. Please attribute any functions provided by ChatGPT or copied from StackOverflow.
-3. Your submission should contain production-ready code, complete with the appropriate file organization and types. You can include tests if you wish, but it's not a requirement.
-4. You may use existing npm packages as you see fit, but do _not_ use any pre-built fireworks animation libraries (which would defeat the purpose of the challenge). You may of course look at those libraries for inspiration, but you must implement the animation yourself.
-5. We don't want you to spend more than a day or so working on this. If you finish all the requirements, please do not feel pressured to build any of the "extra-credit" features. Those are _only_ for if you complete the core requirements and want to keep going.
-
-## Implementation
-
-Take a look at [this page](https://particles.js.org/samples/presets/fireworks.html) for a good example of what we're looking for. We're looking for a similar "fireworks" animation effect. There are no strict requirements around colors, trails, physics, or anything else. We just want to see an attractive animation. 
-
-### Client
-
-The client is a [React](https://reactjs.org) app served by [Next.js](https://nextjs.org). The code can be found in the [client directory](/client). We're currently using [Sass](https://sass-lang.com) modules, but feel free to use a CSS-in-JS framework of your choice if you prefer.
-
-
-## Requirements
-
-1. Everything must be written in [TypeScript](https://www.typescriptlang.org) and your styling language of choice. (Please do not use Vanilla JavaScript, yuck!)
-2. You must submit a runnable site with a working animation. There should either be a continuous animation running, or a clear way to trigger the fireworks!
-3. You must use either the canvas API or webGL. We recommend using [pixi.js](https://www.pixijs.com/), as it's what we use at Visual Electric!
-4. You may _not_ use any pre-built fireworks animation libraries.
-5. Please provide a short write-up of any design decisions you made and their reasoning by either A) replacing the contents of this file, `README.md`, or B) providing a new `IMPLEMENTATION.md` file.
-6. Provide your finished submission as either a zip file or Github repo link to [jobs@visualelectric.com](mailto:jobs@visualelectric.com).
-
-### Considarations
-
-We've purposely left many of the design and implementation details open-ended. We're looking for engineers with strong instincts for good design and architecture. The implementation details, state management, and UX design choices are left entirely to you.
-
-Don't worry too much about browser compatibility, just let us know what browsers you tested on. Similarly, don't worry about mobile support.
-
-### Extra Credit
-
-As mentioned above, we do not want you to spend more than a day or so on this project. If you finish the core implementation quickly, we'd highly recommend one or more of the following extra credit options. 
-
-1. Sandbox. It'd be pretty awesome to have a set of configurable physics parameters like gravity strength, air resistance, etc that would change the animation in real-time.  
-2. Sound. Maybe you want to add some sound effects?
-3. Browser/Mobile support. Not a requirement, but if you have extra time, go for it!
-4. Guide the "shape" of the fireworks using SVG.
-5. Any other ideas you have!
+- Pixi doesn't implement a normalized units system (like Three.js or other graphics libraries I've used), so I created a custom hook to handle the conversion between normalized and screen coordinates. I went with a normalized Y-up 2x2 unit screen space where 0,0 is the center of the screen. For the purposes of this demo this felt sufficient. See `lib/use-normalized-units.ts` for details.
+- The fireworks animation is implemented as a Pixi ticker that runs on every frame. I draw the particles directly to the Pixi graphics context and not leveraging the `react-pixi` renderer. The rendering code is extracted to `lib/particle-renderer.ts` for separation of concerns and make future particle logic testing easier (although no tests are provided).
+- The `Firework` class represents a single fired firework and is responsible for managing the various particles lifecycle. Particles are implemented as a class hierarchy of `BaseParticle` and subclasses `ShellParticle` and `SparkParticle`. See `lib/firework.ts` and `lib/particle.ts` for details.
+- I used a simple 2D vector abstraction inspired by `p5.js` for convenience. See `lib/vector2.ts` for details.
+- An interactive joystick is used to control launching the fireworks giving control over initial magnitude and angle. See `components/joystick.tsx` for details. This also controls the angle and size of the final explosion.
 
 ## Running the Project
 
@@ -57,5 +27,3 @@ Then, from the `client` directory:
 `yarn dev`
 
 should start the client at [http://localhost:3000](http://localhost:3000).
-
-## Good Luck!
